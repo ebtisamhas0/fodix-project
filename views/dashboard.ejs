@@ -1,0 +1,85 @@
+<%- include('header.ejs') -%>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('nav.ejs') -%>
+            <div class="col-sm p-3 min-vh-100">
+                <div class="container dash_info">
+                    <div class="row">
+                        <div class="col-md-4 col-12 p-4">
+                            <div id="pers_detail">
+                                <h3>Personal Details</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 p-4">
+                            <div class="row mx-auto" id="user_name">
+
+                            </div>
+                            <div class="row mt-3 mx-auto" id="user_lvl">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 p-4">
+                            <div class="row" id="community">
+                                
+                            </div>
+                            <div class="row mt-3" id="recent_course">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4 col-12 p-4 ">
+                            <div id="bonus">
+                                <h3>Bonus</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-12 p-4">
+                            <div id="community_spot">
+                                <h3>Community Spotlight</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <h2 class="px-3">Courses</h2>
+                <div class="container courses_container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 col-12 p-4 text-center">
+                            <a href="/course.html"><div>
+                                <h3>course</h3>
+                            </div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bootstrap script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- <script>
+        
+        window.onload=function() {
+        const eform = document.querySelector('form');
+        eform.addEventListener('submit', event =>{
+            event.preventDefault();
+
+            const formData = new FormData(eform);
+            const data = Object.fromEntries(formData);
+
+            fetch('http://localhost:3000/api/v1/auth/login', {
+                method: 'POST',
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+
+            }).then(res => res.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+
+        })
+    }
+    </script> -->
+</body>
+</html>
