@@ -5,18 +5,38 @@ const User = require('../models/users');
 const Post = require('../models/posts');
 const router = express.Router();       
 
-       //  Get each post details. 
+      
+        fetchName = id => {
+          return User.findOne({_id: id}).then(user => user.name);
+        };
 
-        router.get('/post/:id', (req, res) => {
+        //  Get each post details. 
+        router.get('/post/:id', async (req, res) => {
+            let userName;
+            let postUsername;
+            let userComments = [];
             const user = check_user(req);
-            find_user(user)
+            fetchName(user).then(name => userName = name)
             Post.findById(req.params.id)
                 .populate('comments')
-                .exec(function(err, results) {
-              if(err) {console.log(err)}
-                res.render('post/show', {title: 'discussion details', post: 
-             results, comments: results.comments, currentUser: user})
-              })
+                .exec(async function (err, results) {
+                  if (err) { console.log(err); };
+                  fetchName(results.user).then(name => postUsername = name)
+                  for (let comment of results.comments) {
+                    await fetchName(comment.user).then((name) => {
+                      comment =
+                      {
+                        text: comment.text,
+                        post: comment.post,
+                        userName: name,
+                        user: comment.user,
+                        date: comment.date
+                      };
+                    });
+                    userComments.push(comment);
+                  };
+                  res.render('post/show', { title: 'discussion details', post: results, comments: userComments, currentUser: user, postUsername: postUsername });
+                })
             })
    
           router.get('/new', (req, res) => {
@@ -68,9 +88,6 @@ const router = express.Router();
       }
   }
 
-  function find_user(id){
-    let user_names = [];
-    let hala = User.find({ _id: id })
-  }
+
 
 module.exports = router;

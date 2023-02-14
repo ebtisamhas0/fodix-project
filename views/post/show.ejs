@@ -6,13 +6,13 @@
             <div class="col-sm p-3 min-vh-100">
                 <div class="container comments_container">
                     <div class="row mt-3">
-                        <h3><%= post.user %> </h3>
+                        <h3><%= postUsername %> </h3>
                         <h3><%= post.title %> </h3>
                         <h5><%= post.text %></h5>
                     </div>
                     <% comments.forEach(function(comment, i){ %>
                     <div class="row mt-3 <% if (comment.user == currentUser) { __append('comment_right') } %>">
-                        <h3><%= comment.user %> </h3>
+                        <h3><%= comment.userName %> </h3>
                         <h5><%= comment.text %></h5>
                     </div>
                     <% }); %>
