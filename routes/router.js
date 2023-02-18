@@ -8,6 +8,7 @@ const auth = require("./auth");
 const authM = require("../middleware/auth");
 const post = require("./post");
 const comment = require("./comment");
+const course = require("./course");
 
 module.exports.default = (app) => {
     app.use(express.json());
@@ -18,6 +19,7 @@ module.exports.default = (app) => {
     // app.use("/api/v1/users", users);
     app.use("/posts", post);
     app.use("/comments", comment);
+    app.use("/courses", course);
 
     app.get('/', authM.verifyAuth,(req, res)=>{
         res.render('login')

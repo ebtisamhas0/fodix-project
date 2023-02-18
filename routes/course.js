@@ -1,9 +1,11 @@
 const express = require("express");
 const jwt = require('jsonwebtoken');
-const Comment = require('../models/comments');
 const User = require('../models/users');
-const Post = require('../models/posts');
+const Course = require("../models/courses");
+const courseController = require("../controllers/api/course");
 const router = express.Router();       
+
+router.route("/fetchcourses").get(courseController.index)
 
       // get user name from db
         fetchName = id => {
@@ -11,7 +13,7 @@ const router = express.Router();
         };
 
         //  Get each post details. 
-        router.get('/post/:id', async (req, res) => {
+        router.get('/course/:id', async (req, res) => {
             let userName;
             let postUsername;
             let userComments = [];
@@ -37,12 +39,12 @@ const router = express.Router();
                     });
                     userComments.push(comment);
                   };
-                  res.render('post/show', { title: 'discussion details', post: results, comments: userComments, currentUser: user, postUsername: postUsername });
+                  res.render('course/show', { title: 'discussion details', post: results, comments: userComments, currentUser: user, postUsername: postUsername });
                 })
             })
    
           router.get('/new', (req, res) => {
-            res.render('post/create', {title: 'Create a discussion'})
+            res.render('course/create', {title: 'Create a course'})
            })
    
           router.post('/new', (req, res) => {
@@ -51,22 +53,21 @@ const router = express.Router();
             if(user === null){
                 res.redirect('/')
             }
-            const post = new Post({
-              title: req.body.title,
-              text: req.body.text,
-              user: user
+            const course = new Course({
+              name: req.body.name,
+              isActive: req.body.activation
              });
-             post.save(function(err) {
+             course.save(function(err) {
               if(err) {console.log(err)}
                 res.redirect('/')
              })
             })
    
           router.get('/', (req, res) => {
-             Post.find()
+             Course.find()
                 .exec(function(err, results) {
                  if(err) {console.log(err)}
-                 res.render('post/index', {title: 'All Posts', posts: results})
+                 res.render('course/index', {title: 'All courses', courses: results})
               })
           });
 

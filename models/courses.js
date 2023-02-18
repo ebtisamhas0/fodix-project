@@ -5,18 +5,10 @@ const coursesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    ID: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    percentage: {
-        type: Number
-    }
-    ,
     isActive: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     }
 }, {
     strictQuery: true
