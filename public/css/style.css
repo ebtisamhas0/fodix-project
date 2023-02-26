@@ -293,3 +293,115 @@ body{
 .comment_send input:focus{
     outline: none;
 }
+
+
+/* create pages design */
+
+.creation{
+    background-color: white;
+    padding: 2rem 2rem;
+    border-radius: 10px;
+}
+
+
+
+
+/* lessons */
+
+.lessons_container{
+    height: 80vh;
+}
+
+.lessons_container .row{
+    background-color: white;
+    padding: 2rem 1rem;
+    border-radius: 10px;
+}
+
+.youtube-video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }
+
+
+  /* cycle */
+
+  /* Size and Background  */
+
+  #circles_container{
+    min-height: 80vh;
+  }
+
+ .container .menu{
+    padding-left: 0;
+  }
+
+.toggle img {
+    width: 70px;
+    cursor: pointer;
+  }
+  .menu li img {
+    width: 30px;
+  }
+  /* Menu Items */
+  .menu {
+    position: relative;
+
+    height: 235px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu li {
+    position: absolute;
+    left: 0;
+    list-style: none;
+    transition: 0.5s;
+    transition-delay: calc(0.1s * var(--i));
+    transform-origin: 120px;
+    transform: rotate(0deg) translateX(0px);
+  }
+  /* Animations */
+  .menu.active li {
+    transform: rotate(calc(360deg / 8 * var(--i)) ) translateX(310px);
+  }
+  .menu li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px ;
+    height: 120px;
+    color: var(--clr);
+    border: 2px solid var(--clr);
+    border-radius: 50%;
+    font-size: 1.5em;
+    transform: rotate(calc(360deg / -8 * var(--i)));
+    transition: 1s;
+  }
+  .menu li a:hover {
+    transition: 0;
+    background: var(--clr);
+    color: #333;
+    box-shadow: 0 0 10px var(--clr),
+    0 0 30px var(--clr),
+    0 0 50px var(--clr); 
+  }
+  .toggle:hover {
+    filter: grayscale(100%);
+    box-shadow: 0 0 10px #fff; 
+  }
+  .menu .toggle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: #2f363e;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color:white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    z-index: 10000;
+    font-size: 2rem;
+    transition: trasform 2.25s;
+  }

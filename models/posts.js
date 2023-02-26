@@ -15,8 +15,8 @@ const postSchema = new mongoose.Schema({
      type: Date,
      default: Date.now
     },
- // a blog post can have multiple comments, so it should be in a array.
- // all comments info should be kept in this array of this blog post.
+ // a post can have multiple comments, so it should be in a array.
+ // all comments info should be kept in this array of this post.
   comments: [{
      type: mongoose.Schema.Types.ObjectId,
      ref: 'Comment'

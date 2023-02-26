@@ -17,10 +17,11 @@ module.exports.responseHandler = (data, res, message, status) => {
             message: messageData,
             data: data,
         });
+    }else{
+        res
+        .status(statusCode).json({
+            message: messageData,
+            data: data,
+        });
     }
-    res
-    .status(statusCode).json({
-        message: messageData,
-        data: data,
-    });
 };
