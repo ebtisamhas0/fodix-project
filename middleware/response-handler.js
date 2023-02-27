@@ -6,7 +6,7 @@ module.exports.responseHandler = (data, res, message, status) => {
         auth = data.Authorization;
     }
     if(auth !== null){
-        res
+        return res
         .cookie('Authorization', 'Bearer ' + data.Authorization, {
             httpOnly: true,
             sameSite: "strict",
@@ -18,7 +18,7 @@ module.exports.responseHandler = (data, res, message, status) => {
             data: data,
         });
     }else{
-        res
+        return res
         .status(statusCode).json({
             message: messageData,
             data: data,

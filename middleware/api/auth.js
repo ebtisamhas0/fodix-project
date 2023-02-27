@@ -39,7 +39,7 @@ module.exports.verifyAuth = function (req, res, next) {
         //if can verify the token, set req.user and pass to next middleware
         const decoded = jwt.verify(token, process.env.ACCESS_SECRET_TOKEN);
         req.user = decoded;
-        return res.redirect('/dashboard')
+        res.redirect('/dashboard')
     } catch (ex) {
         console.log(ex + 'test')
         responseHandler(null, res, "Unauthorized", 401);
@@ -61,7 +61,7 @@ module.exports.destroyAuth = function (req, res, next) {
         //if can verify the token, set req.user and pass to next middleware
         const decoded = jwt.verify(token, process.env.ACCESS_SECRET_TOKEN);
         req.user = decoded;
-        return res.cookie('Authorization', null, {
+        res.cookie('Authorization', null, {
             httpOnly: true,
             sameSite: "strict",
             expires: new Date(Date.now()

@@ -56,12 +56,14 @@
         e.preventDefault()
         display.textContent = ''
         try {
-          const res = await fetch('/api/v1/auth/login', {
+          const res = await fetch('/login', {
             method: 'POST',
             body: JSON.stringify({ email: username.value, password: password.value }),
             headers: { 'Content-Type': 'application/json' }
             })
+            console.log('before')
           const data = await res.json()
+          console.log('here')
           if (res.status === 400 || res.status === 401) {
             return display.textContent = `${data.message}. ${data.error ? data.error : ''}`
           }

@@ -1,21 +1,11 @@
-const Error = require("../../middleware/error-handler");
-const { responseHandler } = require("../../middleware/response-handler");
+const Error = require("../middleware/error-handler");
 
-const userModel = require("../../models/users");
+const userModel = require("../models/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const service = require("../../service/mongo.service");
+const service = require("../service/mongo.service");
 
-// validate user token data
-exports.fetch = async (req, res, next) => {
-    try {
-        const user = await service.findOne(userModel, { _id: req.user._id }, { password: 0 });
-        responseHandler(user, res)
-    }
-    catch (err) {
-        next(err);
-    }
-}
+// regiser user
 
 exports.signup = async (req, res, next) => {
     try {
@@ -34,14 +24,8 @@ exports.signup = async (req, res, next) => {
         body["password"] = await bcrypt.hash(req.body.password, 10);
 
         let userResponse = await service.create(userModel, body);
-        responseHandler(
-            {
-                id: userResponse._id,
-                email: userResponse?.email,
-                phone: userResponse?.phone
-            },
-            res
-        )
+
+        return res.status(200).json({message: 'success'}).redirect("/")
     } catch (err) {
         next(err);
     }
@@ -59,28 +43,25 @@ exports.login = async (req, res, next) => {
         const user = await service.findOne(userModel, filter);
 
         if (!user) {
-            throw new Error.BadRequest("User not exist");
+            throw new Error.BadRequest("Email or Password is wrong, please chech your enteries.");
         }
 
         // login via password
             const result = await bcrypt.compare(req.body.password, user.password);
             if (!result) {
-                throw new Error.Unauthorized("Incorrect password");
+                throw new Error.Unauthorized("Email or Password is wrong, please chech your enteries.");
             }
 
         let token = jwt.sign({ _id: user._id, roles: user.roles }, process.env.ACCESS_SECRET_TOKEN, {
             expiresIn: "24h",
         });
-        // return the JWT token for the future API calls
-        responseHandler(
-            {
-                _id: user._id,
-                email: user.email,
-                roles: user.roles,
-                Authorization: token,
-            },
-            res
-        );
+
+        return res.cookie('Authorization', 'Bearer ' + token, {
+            httpOnly: true,
+            sameSite: "strict",
+            expires: new Date(Date.now() + 24 * 3600000
+            ) // cookie will be removed after 24 hours
+        }).status(200).json({message: 'success'}).redirect("/");
 
     } catch (err) {
         next(err);

@@ -19,6 +19,7 @@ app.listen(PORT, () => {
     console.log("express started on port 3000")
 })
 
+mongoose.set('strictQuery', true);
 
 // For outside url
 mongoose
@@ -32,7 +33,6 @@ mongoose
     })
 
 // localhost
-// mongoose.set('strictQuery', true);
-// await mongoose.connect(`${process.env.MONGO_URL}`, ()=>{
+// mongoose.connect(`${process.env.MONGO_URL}`, ()=>{
 //     console.log("mongodb is connected")
 // });
