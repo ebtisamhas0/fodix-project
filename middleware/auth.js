@@ -64,7 +64,7 @@ module.exports.destroyAuth = function (req, res, next) {
         return res.cookie('Authorization', null, {
             httpOnly: true,
             sameSite: "strict",
-            expires: new Date(Date.now()
+            expires: new Date(Date.now()- 24 * 3600000
             ) // cookie will be removed
         })
         .redirect('/')
