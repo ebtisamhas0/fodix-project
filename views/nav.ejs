@@ -1,8 +1,15 @@
+
 <div class="col-12 col-md-3 col-xl-2 px-0 bg-light dashboard_bg sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="d-flex flex-sm-column flex-row flex-nowrap  align-items-center sticky-top">
         <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
             <img src="/assets/logo.svg" alt="">
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" id="navIcon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
         <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 align-items-center">
             <li class="nav-item">
                 <a href="/dashboard" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
@@ -61,6 +68,7 @@
             </li>
         </ul>
     </div>
+</nav>
     <div class="d-block logout">
         <a href="/logout" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,3 +84,7 @@
         </a>
     </div>
 </div>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+</script>
